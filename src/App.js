@@ -1,24 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Map from './components/Map'
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello, this is a test.
+        
+        <Map
+        id="myMap"
+        options={{
+          center: { lat: 0 , lng: 90 },
+          zoom: 8
+        }}
+        onMapLoad={map => {
+          var marker = new window.google.maps.Marker({
+            position: {
+              lat: 0, lng: 90
+            } ,
+            map: map,
+            title: 'Hello Istanbul!'
+          });
+        }}
+        
+      />
+      <p>
+          Test
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
   );
 }

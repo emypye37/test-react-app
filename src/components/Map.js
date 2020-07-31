@@ -6,15 +6,28 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.onScriptLoad = this.onScriptLoad.bind(this);
-    this.getLocation = this.getLocation.bind(this);
   }
 
   onScriptLoad() {
-    const map = new window.google.maps.Map(
-      document.getElementById(this.props.id),
-      this.props.options);
-    this.props.onMapLoad(map)
+     const map = new window.google.maps.Map(
+      document.getElementById(this.props.id), {
+        center: { lat: 0, lng: 0 },
+        zoom: 12
+      });
+    // this.props.onMapLoad(map)
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        map.setCenter(pos);
+      });
+    } else {
+      alert("Geolocation is not supported");
+    }
   }
+  
 
   componentDidMount() {
     if (!window.google) {
@@ -34,24 +47,22 @@ class Map extends Component {
 
   }
 
-  getLocation() {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.getCoordinates);
-    } else {
-      alert("Geolocation is not supported");
-    }
-  }
+  // getLocation() {
+  //   if(navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(position => {
+  //       let pos = {
+  //         lat: position.coords.lat,
+  //         lng: position.coords.lng
+  //       }
+  //     });
+  //   } else {
+  //     alert("Geolocation is not supported");
+  //   }
+  // }
 
-  getCoordinates(position) {
-  let pos =  {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    }
-  }
   
-
   render() {
-   this.getLocation();
+  
     return (
       <div>
       <div style={{ width: 800, height: 500, alignContent: 'center' }} id={this.props.id} />

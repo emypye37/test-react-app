@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Map from './components/Map'
 
 
-function App() {
+class App extends Component {
+
+  render() {
   return (
     <div className="App">
         
         <Map
         id="myMap"
         options={{
-          center: { lat: 0 , lng: 90 },
+          center: { lat: 8 , lng: 90 },
           zoom: 8
         }}
         onMapLoad={map => {
@@ -25,10 +27,12 @@ function App() {
         
       />
       <p>
-          Test
+        Gekko
         </p>
     </div>
   );
+
+      }
 }
 
 export default App;

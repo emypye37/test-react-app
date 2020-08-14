@@ -1,0 +1,76 @@
+[
+  {
+    "restaurantName": "Big Cheese Pizza",
+    "address": "461 Highlands Ranch Parkway, Highlands Ranch, CO",
+    "lat":39.544422399999995,
+    "long":-104.988672,
+    "rating": "Rating: 3",
+    "ratings":[
+      {
+        "stars":4,
+        "comment":"Basically Chuck E. Cheese but without the terrifying mouse"
+      },
+      {
+        "stars":2,
+        "comment":"The pizza was subpar, not sure what I was expecting"
+      }
+    ]
+  },
+
+  {
+    "restaurantName": "Meatballz",
+    "address": "1654 Pine Street, Highlands Ranch, CO",
+    "lat":39.550390,
+    "long":-104.984912,
+    "rating":4.75,
+    "ratings":[
+      {
+        "stars":5,
+        "comment":"Best Italian food for miles, I'm Italian, I would know."
+      },
+      {
+        "stars":4.5,
+        "comment":"Not much bad to say about this place, lost half a star because they charged for the extra basket of breadsticks"
+      }
+    ]
+  },
+
+  {
+    "restaurantName": "Mad Greens",
+    "address": "8897 Broadway, Highlands Ranch, CO",
+    "lat":39.547031,
+    "long":-105.006863,
+    "rating": 3.5,
+    "ratings":[
+      {
+        "stars":3,
+        "comment":"Didn't feel like I got much bang for my buck"
+      },
+      {
+        "stars":4,
+        "comment":"Their ingredients are super fresh and service is always great."
+      }
+    ]
+  },
+
+  {
+    "restaurantName": "PizzaHut",
+    "address": "10101 Valor Way, Highlands Ranch, CO",
+    "lat":39.538228,
+    "long":-104.983217,
+    "rating":2.5,
+    "ratings":[
+      {
+        "stars":1,
+        "comment":"There were slices missing from my pizza when the delivery driver dropped it off"
+      },
+      {
+        "stars":4,
+        "comment":"I think they changed their recipe and it's honestly way better now."
+      }
+    ]
+  }
+]
+
+
+  

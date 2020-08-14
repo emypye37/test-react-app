@@ -43,10 +43,12 @@ class App extends Component {
         // }}
         
       />
+      <Sidebar>
       <RestCard jsonName={this.state.restaurants} jsonRating={this.state.rating} jsonAddress={this.state.address} JSONrests={this.state.restaurants}></RestCard>
       <RestCard jsonName={this.state.restaurants} jsonRating={this.state.rating} jsonAddress={this.state.address} JSONrests={this.state.restaurants}></RestCard>
       <RestCard jsonName={this.state.restaurants} jsonRating={this.state.rating} jsonAddress={this.state.address} JSONrests={this.state.restaurants}></RestCard>
       <RestCard jsonName={this.state.restaurants} jsonRating={this.state.rating} jsonAddress={this.state.address} JSONrests={this.state.restaurants}></RestCard>
+      </Sidebar>
     </div>
   );
 

@@ -21,7 +21,8 @@ export default function RestCard(props) {
   
   const classes = useStyles();
   const restsRender = props.JSONrests.map((rest, i) => (<p key={i}>{rest.restaurantName}</p>))
-      
+  const addRender = props.JSONrests.map((add, i) => (<p key={i}>{add.address}</p>))    
+  const ratingRender = props.JSONrests.map((rating, i) => (<p key={i}>{rating.rating}</p>))
     return (
       <div>
       <Card className={classes.root}>
@@ -38,10 +39,10 @@ export default function RestCard(props) {
             {restsRender}
           </Typography>
           <Typography color="textSecondary" component="p">
-            {props.jsonAddress}
+            {addRender}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.jsonRating}
+            {ratingRender}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,42 +7,50 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { findByLabelText } from '@testing-library/react';
 
-const useStyles = makeStyles({
+const styles = {
   root: {
     maxWidth: 400,
+    display: 'flex',
+    flexDirection: 'column'
   },
-});
+  info: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+ 
 
-//create styles and withstyles 
+};
 
-export default function RestCard(props) {
-  console.log(props.JSONrests)
+//array of images here to iterate over and match key to key??
+
+class RestCard extends Component {
+  render(){
   
-  const classes = useStyles();
-  const restsRender = props.JSONrests.map((rest, i) => (<p key={i}>{rest.restaurantName}</p>))
-  const addRender = props.JSONrests.map((add, i) => (<p key={i}>{add.address}</p>))    
-  const ratingRender = props.JSONrests.map((rating, i) => (<p key={i}>{rating.rating}</p>))
+  
+  const classes = this.props;
+  
     return (
       <div>
       <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea className={classes.info}>
         <CardMedia
           component="img"
-          alt="Big Cheese"
+          alt={this.props.name}
           height="100"
-          image="https://www.beefmagazine.com/sites/beefmagazine.com/files/styles/article_featured_retina/public/Arbys%20restaurant%20GettyImages-910776876%20Rick%20Diamond%20resized%20big.jpg?itok=Bjsw-BBC"
-          title="Contemplative Reptile"
+          image={this.props.image}
+          className={classes.pic}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {restsRender}
+          {this.props.name}
           </Typography>
           <Typography color="textSecondary" component="p">
-            {addRender}
+          {this.props.address}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {ratingRender}
+            {this.props.rating}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -55,13 +63,8 @@ export default function RestCard(props) {
         
       </div>
     )
-  
+    } 
 }
 
-// <p>{this.props.nameFromApp}, {this.props.ratingFromApp}</p>
-// {colorRender}
-// {restsRender}
+export default withStyles(styles)(RestCard);
 
-// const restsRender = props.JSONrests.map((rest, i) => (<p key={i}>Info: {rest.restaurantName}</p>))
-
-      // const colorRender = props.colorArray.map((color, i) => (<p key={i}>this is {color}</p>))

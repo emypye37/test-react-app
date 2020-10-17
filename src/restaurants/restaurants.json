@@ -5,7 +5,7 @@
     "lat":39.544422399999995,
     "long":-104.988200,
     "image": "https://www.fastfoodpost.com/wp-content/uploads/2020/03/Marcos-Pizza-Offers-The-Big-Cheese-Pizza-Nationwide-hero.jpg",
-    "rating": "Rating: 3",
+    "rating": 3,
     "ratings":[
       {
         "stars":4,
@@ -24,7 +24,7 @@
     "lat":39.546344,
     "long":-104.986714,
     "image":"https://images-gmi-pmc.edge-generalmills.com/1fd2e37a-2c90-4e07-ad57-a3c218fe1ea9.jpg",
-    "rating":"Rating: 4.75",
+    "rating": 4.5,
     "ratings":[
       {
         "stars":5,
@@ -43,7 +43,7 @@
     "lat":39.545725,
     "long":-104.993135,
     "image":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/chickpea-mediterranean-salad-horizontal-jpg-1524665573.jpg",
-    "rating": "Rating: 3.5",
+    "rating": 3.5,
     "ratings":[
       {
         "stars":3,
@@ -62,7 +62,7 @@
     "lat":39.538228,
     "long":-104.983217,
     "image":"https://assets.pizzahut.com.au/f/49069/1200x600/684b132cec/social-link.jpg",
-    "rating": "Rating: 2.5",
+    "rating": 2.5,
     "ratings":[
       {
         "stars":1,

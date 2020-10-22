@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import restIcon from '../photos/restaurant-71 copy.png';
-
+import React, { Component } from "react";
+import { render } from "react-dom";
+import restIcon from "../photos/restaurant-71 copy.png";
 
 class Map extends Component {
-
   constructor(props) {
     super();
     this.onGoogleAPI = this.onGoogleAPI.bind(this);
@@ -12,71 +10,78 @@ class Map extends Component {
 
   componentDidMount() {
     if (!window.google) {
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
+      var s = document.createElement("script");
+      s.type = "text/javascript";
       s.src = `https://maps.google.com/maps/api/js?key=AIzaSyBhhQytLa3AZetEOs_JGMLSWA_aXkrR0KI`;
-      var x = document.getElementsByTagName('script')[0];
+      var x = document.getElementsByTagName("script")[0];
       x.parentNode.insertBefore(s, x);
       //We cannot access google.maps until it's finished loading
-      s.addEventListener('load', e => {
-        this.onGoogleAPI()
-      })
+      s.addEventListener("load", (e) => {
+        this.onGoogleAPI();
+      });
     } else {
-      this.onGoogleAPI()
+      this.onGoogleAPI();
     }
   }
 
   onGoogleAPI() {
     this.props.loadMapLocation();
-   if(navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(position => {
-       
-       const pos = {
-         lat: 39.543170,
-         lng: -104.986427
-       };
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const pos = {
+          lat: 39.54317,
+          lng: -104.986427,
+        };
 
-       const marker = new window.google.maps.Marker({
-         position: pos,
-         map: this.props.map,
-         animation: window.google.maps.Animation.DROP
-       })
+        const marker = new window.google.maps.Marker({
+          position: pos,
+          map: this.props.map,
+          animation: window.google.maps.Animation.DROP,
+        });
 
-       this.props.map.setCenter(pos);
-       this.createJSONMarkers();
-       this.props.getPlacesResults();
-      //  this.props.getDetailsResults();
+        this.props.map.setCenter(pos);
+        this.createJSONMarkers();
+        this.props.getPlacesResults();
+      });
+    } else {
+      alert("Geolocation is not supported");
+    }
+  }
 
-     });
-   } else {
-     alert("Geolocation is not supported");
-   } 
- }
-
-
-  createJSONMarkers() {
+  createJSONMarkers = () => {
     const restMarker = this.props.JSONrests.map((rest, i) => {
       new window.google.maps.Marker({
         position: {
           lat: rest.lat,
-          lng: rest.long
+          lng: rest.long,
         },
         map: this.props.map,
         icon: {
-          url: restIcon
-        }
-      })
-      }
-    )
-  }
+          url: restIcon,
+        },
+      });
+    });
+  };
+
+  // createAPIMarkers = () => {
+  //   const APImarker = this.props.apiRests.map((apiRest, i) => {
+  //     new window.google.maps.Marker({
+  //       position: apiRest.geometry.location,
+  //       map: this.props.map,
+  //       icon: restIcon,
+  //     });
+  //   });
+  // };
 
   render() {
-  
     return (
       <div className="map">
-      <div style={{ width: "100%", height: "750px", position: "fixed"}} id={this.props.id} />
+        <div
+          style={{ width: "100%", height: "750px", position: "fixed" }}
+          id={this.props.id}
+        />
       </div>
-    )
+    );
   }
 }
 
@@ -84,5 +89,4 @@ export default Map;
 
 // lat: 39.544422399999995
 // lng: -104.988672
-// style={{ width: 1000, height: 700 }} 
- 
+// style={{ width: 1000, height: 700 }}

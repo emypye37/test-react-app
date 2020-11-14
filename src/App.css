@@ -15,17 +15,8 @@ body {
   display: grid;
   grid-template-columns: 2fr 1fr;
   overflow: hidden;
-
 }
-
-
 
 .sidebar {
- overflow-y: scroll;
+  overflow-y: scroll;
 }
-
-
-
-/* .map {
-  position: fixed;
-} */

@@ -12,10 +12,10 @@ class Map extends Component {
     if (!window.google) {
       var s = document.createElement("script");
       s.type = "text/javascript";
-      s.src = `https://maps.google.com/maps/api/js?key=AIzaSyBhhQytLa3AZetEOs_JGMLSWA_aXkrR0KI`;
+      s.src = `https://maps.google.com/maps/api/js?key=`;
       var x = document.getElementsByTagName("script")[0];
       x.parentNode.insertBefore(s, x);
-      //We cannot access google.maps until it's finished loading
+      //cannot access google.maps until it's finished loading
       s.addEventListener("load", (e) => {
         this.onGoogleAPI();
       });
@@ -62,16 +62,6 @@ class Map extends Component {
       });
     });
   };
-
-  // createAPIMarkers = () => {
-  //   const APImarker = this.props.apiRests.map((apiRest, i) => {
-  //     new window.google.maps.Marker({
-  //       position: apiRest.geometry.location,
-  //       map: this.props.map,
-  //       icon: restIcon,
-  //     });
-  //   });
-  // };
 
   render() {
     return (

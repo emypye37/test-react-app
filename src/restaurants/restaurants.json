@@ -2,18 +2,22 @@
   {
     "restaurantName": "Big Cheese Pizza",
     "address": "461 Highlands Ranch Parkway, Highlands Ranch, CO",
-    "lat":39.544422399999995,
-    "long":-104.988200,
+    "lat": 39.544422399999995,
+    "long": -104.9882,
     "image": "https://www.fastfoodpost.com/wp-content/uploads/2020/03/Marcos-Pizza-Offers-The-Big-Cheese-Pizza-Nationwide-hero.jpg",
     "rating": 3,
-    "ratings":[
+    "reviews": [
       {
-        "stars":4,
-        "comment":"Basically Chuck E. Cheese but without the terrifying mouse"
+        "name": "Jerimiah Johnson",
+        "stars": 4,
+        "when": "A week ago",
+        "comment": "Basically Chuck E. Cheese but without the terrifying mouse"
       },
       {
-        "stars":2,
-        "comment":"The pizza was subpar, not sure what I was expecting"
+        "name": "Pat Love",
+        "stars": 2,
+        "when": "A month ago",
+        "comment": "The pizza was subpar, not sure what I was expecting"
       }
     ]
   },
@@ -21,18 +25,22 @@
   {
     "restaurantName": "Meatballz",
     "address": "1654 Pine Street, Highlands Ranch, CO",
-    "lat":39.546344,
-    "long":-104.986714,
-    "image":"https://images-gmi-pmc.edge-generalmills.com/1fd2e37a-2c90-4e07-ad57-a3c218fe1ea9.jpg",
+    "lat": 39.546344,
+    "long": -104.986714,
+    "image": "https://images-gmi-pmc.edge-generalmills.com/1fd2e37a-2c90-4e07-ad57-a3c218fe1ea9.jpg",
     "rating": 4.5,
-    "ratings":[
+    "reviews": [
       {
-        "stars":5,
-        "comment":"Best Italian food for miles, I'm Italian, I would know."
+        "name": "Daryl Snow",
+        "stars": 5,
+        "when": "July",
+        "comment": "Best Italian food for miles, I'm Italian, I would know."
       },
       {
-        "stars":4.5,
-        "comment":"Not much bad to say about this place, lost half a star because they charged for the extra basket of breadsticks"
+        "name": "Kamala Harris",
+        "stars": 4,
+        "when": "June",
+        "comment": "Not much bad to say about this place, lost half a star because they charged for the extra basket of breadsticks"
       }
     ]
   },
@@ -40,18 +48,22 @@
   {
     "restaurantName": "Mad Greens",
     "address": "8897 Broadway, Highlands Ranch, CO",
-    "lat":39.545725,
-    "long":-104.993135,
-    "image":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/chickpea-mediterranean-salad-horizontal-jpg-1524665573.jpg",
+    "lat": 39.545725,
+    "long": -104.993135,
+    "image": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/chickpea-mediterranean-salad-horizontal-jpg-1524665573.jpg",
     "rating": 3.5,
-    "ratings":[
+    "reviews": [
       {
-        "stars":3,
-        "comment":"Didn't feel like I got much bang for my buck"
+        "name": "Jennifer Hawkins",
+        "stars": 3,
+        "when": "A week ago",
+        "comment": "Didn't feel like I got much bang for my buck"
       },
       {
-        "stars":4,
-        "comment":"Their ingredients are super fresh and service is always great."
+        "name": "David Lamb",
+        "stars": 4,
+        "when": "Three weeks ago",
+        "comment": "Their ingredients are super fresh and service is always great."
       }
     ]
   },
@@ -59,22 +71,23 @@
   {
     "restaurantName": "PizzaHut",
     "address": "10101 Valor Way, Highlands Ranch, CO",
-    "lat":39.538228,
-    "long":-104.983217,
-    "image":"https://assets.pizzahut.com.au/f/49069/1200x600/684b132cec/social-link.jpg",
+    "lat": 39.538228,
+    "long": -104.983217,
+    "image": "https://assets.pizzahut.com.au/f/49069/1200x600/684b132cec/social-link.jpg",
     "rating": 2.5,
-    "ratings":[
+    "reviews": [
       {
-        "stars":1,
-        "comment":"There were slices missing from my pizza when the delivery driver dropped it off"
+        "name": "Petra Williams",
+        "stars": 1,
+        "when": "Today",
+        "comment": "There were slices missing from my pizza when the delivery driver dropped it off"
       },
       {
-        "stars":4,
-        "comment":"I think they changed their recipe and it's honestly way better now."
+        "name": "Holly Edney",
+        "stars": 4,
+        "when": "October",
+        "comment": "I think they changed their recipe and it's honestly way better now."
       }
     ]
   }
 ]
-
-
-  

@@ -6,17 +6,19 @@ import Reviews from "./components/sidebar/Reviews";
 import RestCard from "./components/sidebar/RestCard";
 import restaurants from "./restaurants/restaurants.json";
 import restIcon from "./photos/restaurant-71 copy.png";
-import InfoWindow from "./components/InfoWindow";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      restaurants: restaurants,
-      reviews: [],
+      JSONrests: restaurants,
+      apiReviews: [],
       map: "",
       apiRests: [],
       id: "UserMap",
+      activeReviewsId: "",
+      activeMarkerId: "",
+      markerArray: [],
     };
   }
 
@@ -27,6 +29,18 @@ class App extends Component {
         zoom: 15,
       }),
     });
+  };
+
+  getJSONreviews = (placeCode) => {
+    if (placeCode === this.state.activeReviewsId) {
+      this.setState({
+        activeReviewsId: "",
+      });
+    } else {
+      this.setState({
+        activeReviewsId: placeCode,
+      });
+    }
   };
 
   getPlacesResults = () => {
@@ -48,37 +62,70 @@ class App extends Component {
         self.setState({
           apiRests: results,
         });
-        self.createAPIMarkers();
       } else {
         alert("No restaurants in your area!");
       }
+      self.createAPIMarkers();
     }
   };
 
   getDetailsResults = (placeCode) => {
-    let request = {
-      placeId: placeCode,
-      fields: ["reviews"],
-    };
-    let self = this;
+    if (placeCode === this.state.activeReviewsId) {
+      this.setState({
+        activeReviewsId: "",
+      });
+    } else {
+      let request = {
+        placeId: placeCode,
+        fields: ["reviews", "place_id"],
+      };
+      let self = this;
 
-    let service = new window.google.maps.places.PlacesService(this.state.map);
-    service.getDetails(request, (place, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+      let service = new window.google.maps.places.PlacesService(this.state.map);
+      service.getDetails(request, (place, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          self.setState({
+            apiReviews: place.reviews,
+          });
+        }
+
         self.setState({
-          reviews: place.reviews,
+          activeReviewsId: place.place_id,
         });
-      }
-    });
+      });
+    }
   };
-
+  //setVisible for markers
+  //marker.setMap(null) to remove completely
   createAPIMarkers = () => {
-    const APImarker = this.state.apiRests.map((apiRest, i) => {
-      new window.google.maps.Marker({
+    let infoWindow = new window.google.maps.InfoWindow({
+      content: "",
+    });
+    let markerArr = [];
+    const apiMap = this.state.apiRests.map((apiRest, i) => {
+      const apiMarkers = new window.google.maps.Marker({
         position: apiRest.geometry.location,
         map: this.state.map,
         icon: restIcon,
       });
+      markerArr.push(apiMarkers);
+
+      const streetView =
+        "https://maps.googleapis.com/maps/api/streetview?size=200x100&location=" +
+        apiRest.geometry.location +
+        "&key=";
+
+      const streetViewNoP = streetView.replace(/[()]/g, "");
+
+      apiMarkers.addListener("click", () => {
+        infoWindow.setContent(
+          apiRest.name + "<br></br>" + "<img src='" + streetViewNoP + "'>"
+        );
+        infoWindow.open(this.state.map, apiMarkers);
+      });
+    });
+    this.setState({
+      markerArray: markerArr,
     });
   };
 
@@ -87,20 +134,26 @@ class App extends Component {
       <div className="App">
         <Map
           id={this.state.id}
-          JSONrests={this.state.restaurants}
+          JSONrests={this.state.JSONrests}
           loadMapLocation={this.loadMapLocation}
           map={this.state.map}
           getPlacesResults={this.getPlacesResults}
           getDetailsResults={this.getDetailsResults}
+          setJSONreviews={this.setJSONreviews}
           apiRests={this.state.apiRests}
+          markerArray={this.state.markerArray}
         />
         <Sidebar
           className="sidebar"
-          JSONrests={this.state.restaurants}
+          JSONrests={this.state.JSONrests}
           apiRests={this.state.apiRests}
+          JSONreviews={this.state.JSONreviews}
           getPlacesResults={this.getPlacesResults}
           getDetailsResults={this.getDetailsResults}
-          reviews={this.state.reviews}
+          getJSONreviews={this.getJSONreviews}
+          apiReviews={this.state.apiReviews}
+          activeReviewsId={this.state.activeReviewsId}
+          markerArray={this.state.markerArray}
         ></Sidebar>
       </div>
     );

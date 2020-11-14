@@ -12,41 +12,52 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import restaurants from "../../restaurants/restaurants.json";
+import NewReview from "./NewReview";
 
 class RestCard extends Component {
   constructor(props) {
     super();
-    this.state = {
-      expanded: false,
-    };
   }
   onReadReviews = (placeCode) => {
-    // this.setState({
-    //   expanded: false,
-    // });
-    this.props.getDetailsResults(placeCode);
-    // this.setState({
-    //   expanded: true,
-    // });
+    if (placeCode <= 100) {
+      this.props.getJSONreviews(placeCode);
+    } else {
+      this.props.getDetailsResults(placeCode);
+    }
   };
 
-  // handleChange = () => {
-  //   if (this.state.expanded === true) {
-  //     this.setState({
-  //       expanded: false,
-  //     });
-  //   } else {
-  //     this.setState({
-  //       expanded: true,
-  //     });
-  //   }
-  // };
+  openReviewForm = () => {
+    return true;
+  };
 
+  onCardClick = () => {
+    //on card click I want to be able to call the click event listener function on the corresponding marker.
+    //how to get the information out of that function to be accessible? store in state?
+    //other way around will be more difficult, to get marker to make sidebar respond
+  };
+
+  //separate array for user added reviews and another for user added restaurants
   render() {
-    let renderReviews = "";
-
-    if (this.props.reviews !== undefined) {
-      renderReviews = this.props.reviews.map((review, i) => {
+    let renderAPIreviews = "";
+    let renderJSONreviews = "";
+    let newReviewForm = "";
+    if (this.props.placeId < 100) {
+      renderJSONreviews = restaurants[this.props.placeId].reviews.map(
+        (review, i) => {
+          return (
+            <Reviews
+              name={review.name}
+              reviewRating={review.stars}
+              when={review.when}
+              text={review.comment}
+              key={i}
+            ></Reviews>
+          );
+        }
+      );
+    } else if (this.props.apiReviews !== undefined) {
+      renderAPIreviews = this.props.apiReviews.map((review, i) => {
         return (
           <Reviews
             name={review.author_name}
@@ -57,6 +68,9 @@ class RestCard extends Component {
           ></Reviews>
         );
       });
+    }
+    if (this.openReviewForm()) {
+      newReviewForm = <NewReview></NewReview>;
     }
 
     return (
@@ -89,19 +103,27 @@ class RestCard extends Component {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Accordion expanded={this.state.expanded}>
+            <Accordion
+              expanded={this.props.activeReviewsId === this.props.placeId}
+            >
               <AccordionSummary
                 onClick={() => this.onReadReviews(this.props.placeId)}
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
-                id="panel1a-header"
+                id={this.props.id}
               >
-                <Typography>GET MORE INFO</Typography>
+                <Typography>READ REVIEWS</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <div>
-                  {renderReviews}
-                  <Button>Write a Review</Button>
+                  <Button
+                  //onclick here??
+                  >
+                    Write a Review
+                  </Button>
+                  {newReviewForm}
+                  {renderAPIreviews}
+                  {renderJSONreviews}
                 </div>
               </AccordionDetails>
             </Accordion>
@@ -113,11 +135,3 @@ class RestCard extends Component {
 }
 
 export default RestCard;
-
-// <Reviews getDetailsResults={this.props.getDetailsResults} placeId={this.props.placeId} reviews={this.props.reviews}></Reviews>
-
-// <Button className="moreInfo" onClick={() => this.onReadReviews(this.props.placeId)}>Get More Info</Button>
-
-// <div>
-//         {renderReviews}
-//         </div>
